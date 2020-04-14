@@ -90,7 +90,7 @@ export default StyleSheet.create({
   borderDesign: {
     width: 30,
     height: 30,
-    borderColor: 'white',
+    borderColor: '#CE00F6',
   },
   icon: {
     paddingRight: 10,
