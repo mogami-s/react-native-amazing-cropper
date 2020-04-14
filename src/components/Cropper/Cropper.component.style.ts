@@ -28,7 +28,6 @@ export default StyleSheet.create({
   },
   gridColumn: {
     flex: 1,
-//     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.5)',
   },
   animation: {
@@ -91,7 +90,7 @@ export default StyleSheet.create({
   borderDesign: {
     width: 30,
     height: 30,
-    borderColor: '#CE00F6',
+    borderColor: 'white',
   },
   icon: {
     paddingRight: 10,
