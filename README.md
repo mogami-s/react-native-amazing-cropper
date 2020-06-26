@@ -28,6 +28,7 @@ Step 2 is not needed for react-native >= 0.60 because of autolinking. Instead ru
 | Prop  | Type | Description |
 | :------------ |:---------------:| :---------------|
 | onDone | `function` | A function which accepts 1 argument `croppedImageUri`. Called when user press the 'DONE' button |
+| onError | `function` | A function which accepts 1 argument `err` of type `Error`. Called when rotation or cropping fails |
 | onCancel | `function` | A function without arguments. Called when user press the 'CANCEL' button |
 | imageUri | `string` | The uri of the image you want to crop or rotate |
 | imageWidth | `number` | The width (in pixels) of the image you passed in `imageUri` |
@@ -36,6 +37,8 @@ Step 2 is not needed for react-native >= 0.60 because of autolinking. Instead ru
 | footerComponent | `component` | Custom component for footer. Default is `    <DefaultFooter doneText='DONE' rotateText='ROTATE' cancelText='CANCEL' />`|
 | NOT_SELECTED_AREA_OPACITY | `number` | The opacity of the area which is not selected by the cropper. Should be a value between `0` and `1`. Default is `0.5`|
 | BORDER_WIDTH | `number` | The border width [(see image)](https://i.imgur.com/CMSS953.png). Default is `50`|
+| COMPONENT_WIDTH | `number` | The width of the entire component. Default is `Dimensions.get('window').width`, not recommended to change.|
+| COMPONENT_HEIGHT | `number` | The height of the entire component. Default is `Dimensions.get('window').height`, you should change it to fix [hidden footer issue](https://github.com/ggunti/react-native-amazing-cropper/issues/30).|
 
 
 #### Usage example 1 (using the default footer)
@@ -50,6 +53,10 @@ class AmazingCropperPage extends Component {
     // send image to server for example
   }
 
+  onError = (err) => {
+    console.log(err);
+  }
+
   onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
@@ -59,6 +66,7 @@ class AmazingCropperPage extends Component {
     return (
       <AmazingCropper
         onDone={this.onDone}
+        onError={this.onError}
         onCancel={this.onCancel}
         imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
         imageWidth={1600}
@@ -83,6 +91,10 @@ class AmazingCropperPage extends Component {
     // send image to server for example
   }
 
+  onError = (err) => {
+    console.log(err);
+  }
+
   onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
@@ -94,6 +106,7 @@ class AmazingCropperPage extends Component {
         // Pass custom text to the default footer
         footerComponent={<DefaultFooter doneText='OK' rotateText='ROT' cancelText='BACK' />}
         onDone={this.onDone}
+        onError={this.onError}
         onCancel={this.onCancel}
         imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
         imageWidth={1600}
@@ -187,6 +200,10 @@ class AmazingCropperPage extends Component {
     // send image to server for example
   }
 
+  onError = (err) => {
+    console.log(err);
+  }
+
   onCancel = () => {
     console.log('Cancel button was pressed');
     // navigate back
@@ -199,6 +216,7 @@ class AmazingCropperPage extends Component {
         // Do NOT pass onDone, onRotate and onCancel to the footer component, the Cropper will do it for you
         footerComponent={<CustomCropperFooter />}
         onDone={this.onDone}
+        onError={this.onError}
         onCancel={this.onCancel}
         imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
         imageWidth={1600}
@@ -214,4 +232,4 @@ Simple Share: https://play.google.com/store/apps/details?id=com.sendfiles </br>
 Card Trick: https://play.google.com/store/apps/details?id=com.card_trick_2 </br>
 Swwwitch: https://play.google.com/store/apps/details?id=com.swwwitch
 
-### You need a mobile app for android & iOS? [Hire me](https://order-software.com)
+### Do you need a mobile app for android & iOS? [Hire me](https://order-software.com)
